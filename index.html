@@ -70,96 +70,156 @@
             z-index: 1;
         }
 
-        /* ─── Delivery bar ─── */
-        .delivery-bar {
+        /* ─── NEW: Zamonaviy to'lqinli yetkazib berish animatsiyasi ─── */
+        .delivery-animation {
             position: relative;
-            height: 56px;
-            margin-bottom: 12px;
+            height: 70px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .track {
+        .wave-track {
             position: absolute;
-            left: 6%;
-            right: 6%;
-            height: 1.5px;
+            left: 8%;
+            right: 8%;
+            height: 2px;
             top: 50%;
             transform: translateY(-50%);
-            background: repeating-linear-gradient(90deg,
-                    rgba(255, 255, 255, 0.12) 0 6px,
-                    transparent 6px 14px);
-            border-radius: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
+            overflow: visible;
         }
-        .dot {
+        /* Harakatlanuvchi nur */
+        .wave-beam {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            transform: translateY(-50%);
+            background: linear-gradient(90deg, transparent, rgba(245, 166, 35, 0.8), rgba(255, 186, 59, 1), rgba(245, 166, 35, 0.8),
+                    transparent);
+            border-radius: 2px;
+            filter: blur(1px);
+            animation: beamRide 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            box-shadow: 0 0 20px rgba(245, 166, 35, 0.7), 0 0 40px rgba(245, 166, 35, 0.3);
+        }
+        @keyframes beamRide {
+            0% {
+                left: -60px;
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            45% {
+                left: calc(100% - 60px);
+                opacity: 1;
+            }
+            60% {
+                left: calc(100% - 60px);
+                opacity: 0.8;
+            }
+            70% {
+                left: calc(100% - 60px);
+                opacity: 0;
+            }
+            75% {
+                left: -60px;
+                opacity: 0;
+            }
+            90% {
+                left: -60px;
+                opacity: 0;
+            }
+            100% {
+                left: -60px;
+                opacity: 0;
+            }
+        }
+        /* Boshlanish nuqtasi */
+        .marker {
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
-            z-index: 1;
+            z-index: 2;
         }
-        .dot.start {
-            left: 6%;
-            width: 8px;
-            height: 8px;
-            background: #4a505e;
+        .marker.pickup {
+            left: 8%;
+            width: 10px;
+            height: 10px;
+            background: #3a4050;
+            border: 2px solid rgba(255, 255, 255, 0.15);
         }
-        .dot.end {
-            left: 94%;
-            width: 14px;
-            height: 14px;
+        .marker.dropoff {
+            left: 92%;
+            width: 16px;
+            height: 16px;
             background: var(--gold);
-            box-shadow: 0 0 0 5px rgba(245, 166, 35, 0.1), 0 0 24px rgba(245, 166, 35, 0.4);
-            animation: glowPulse 2.4s ease-in-out infinite;
+            border: 2px solid rgba(245, 166, 35, 0.4);
+            box-shadow: 0 0 0 6px rgba(245, 166, 35, 0.1), 0 0 28px rgba(245, 166, 35, 0.5);
+            animation: dropPulse 2.4s ease-in-out infinite;
         }
-        @keyframes glowPulse {
+        @keyframes dropPulse {
             0%,
             100% {
-                box-shadow: 0 0 0 5px rgba(245, 166, 35, 0.1), 0 0 24px rgba(245, 166, 35, 0.4);
+                box-shadow: 0 0 0 6px rgba(245, 166, 35, 0.1), 0 0 28px rgba(245, 166, 35, 0.5);
             }
             50% {
-                box-shadow: 0 0 0 12px rgba(245, 166, 35, 0.03), 0 0 38px rgba(245, 166, 35, 0.65);
+                box-shadow: 0 0 0 14px rgba(245, 166, 35, 0.03), 0 0 44px rgba(245, 166, 35, 0.7);
             }
         }
-        .scooter {
+        /* Kichik zarralar */
+        .particle {
             position: absolute;
             top: 50%;
-            left: 6%;
+            width: 3px;
+            height: 3px;
+            background: var(--gold-bright);
+            border-radius: 50%;
             transform: translate(-50%, -50%);
-            font-size: 20px;
-            z-index: 2;
-            filter: drop-shadow(0 0 10px rgba(245, 166, 35, 0.45));
-            animation: ride 3s cubic-bezier(0.5, 0.05, 0.4, 0.95) infinite;
-            pointer-events: none;
+            animation: particleFloat 2.4s ease-in-out infinite;
+            opacity: 0;
+            filter: blur(0.5px);
         }
-        @keyframes ride {
+        .particle:nth-child(1) {
+            animation-delay: 0.15s;
+        }
+        .particle:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .particle:nth-child(3) {
+            animation-delay: 0.45s;
+        }
+        .particle:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+        @keyframes particleFloat {
             0% {
-                left: 6%;
-                opacity: 1;
-            }
-            40% {
-                left: 94%;
-                opacity: 1;
-            }
-            52% {
-                left: 94%;
-                opacity: 0.6;
-            }
-            55% {
-                left: 94%;
+                left: 8%;
                 opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
             }
-            57% {
-                left: 6%;
+            20% {
+                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            45% {
+                left: 92%;
+                opacity: 0.7;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            60% {
+                left: 92%;
                 opacity: 0;
-            }
-            62% {
-                left: 6%;
-                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.2);
             }
             100% {
-                left: 6%;
-                opacity: 1;
+                left: 8%;
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
             }
         }
 
@@ -529,6 +589,9 @@
             h1 {
                 font-size: 23px;
             }
+            .delivery-animation {
+                height: 56px;
+            }
         }
         @media (min-width: 420px) {
             .panel {
@@ -539,12 +602,14 @@
             }
         }
         @media (prefers-reduced-motion: reduce) {
-            .scooter {
+            .wave-beam,
+            .particle,
+            .marker.dropoff {
                 animation: none;
-                left: 50%;
             }
-            .dot.end {
-                animation: none;
+            .wave-beam {
+                left: 50%;
+                opacity: 0.6;
             }
             * {
                 transition-duration: 0.01ms !important;
@@ -561,12 +626,17 @@
 <body>
 
     <div class="wrapper">
-        <!-- Animated delivery track -->
-        <div class="delivery-bar" aria-hidden="true">
-            <div class="track"></div>
-            <div class="dot start"></div>
-            <div class="dot end"></div>
-            <div class="scooter">🛵</div>
+        <!-- ZAMONAVIY TO'LQINLI YETKAZIB BERISH ANIMATSIYASI -->
+        <div class="delivery-animation" aria-hidden="true">
+            <div class="wave-track">
+                <div class="wave-beam"></div>
+                <div class="particle" style="top: calc(50% - 6px);"></div>
+                <div class="particle" style="top: calc(50% + 6px);"></div>
+                <div class="particle" style="top: calc(50% - 10px);"></div>
+                <div class="particle" style="top: calc(50% + 10px);"></div>
+            </div>
+            <div class="marker pickup"></div>
+            <div class="marker dropoff"></div>
         </div>
 
         <p class="eyebrow">Yetkazib berildi</p>
