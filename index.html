@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Rahmat — Kuryerga choyga</title>
+    <title>Rahmat — Kuryerga choyga / Спасибо — На чай курьеру</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
@@ -70,7 +70,87 @@
             z-index: 1;
         }
 
-        /* ─── NEW: Zamonaviy to'lqinli yetkazib berish animatsiyasi ─── */
+        /* ─── Goal card (standalone, top) ─── */
+        .goal-card {
+            background: linear-gradient(180deg, rgba(245, 166, 35, 0.09), rgba(245, 166, 35, 0.03));
+            border: 1px solid var(--gold-border);
+            border-radius: var(--radius-2xl);
+            padding: 16px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: 0 4px 22px -10px rgba(245, 166, 35, 0.25);
+        }
+        .goal-icon {
+            flex: 0 0 auto;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(245, 166, 35, 0.14);
+            border: 1px solid var(--gold-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .goal-text {
+            min-width: 0;
+        }
+        .goal-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 4px;
+        }
+        .goal-desc {
+            font-size: 13.5px;
+            line-height: 1.55;
+            color: var(--text-2);
+        }
+        .goal-desc b {
+            color: #f0e2c4;
+            font-weight: 700;
+        }
+
+        /* ─── Language switcher ─── */
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        .lang-btn {
+            font-weight: 700;
+            font-size: 12.5px;
+            letter-spacing: 0.04em;
+            color: var(--text-3);
+            background: var(--surface-2);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 7px 16px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.25s var(--ease-out);
+            outline: none;
+        }
+        .lang-btn:hover {
+            border-color: rgba(255, 255, 255, 0.14);
+            color: #dde1e8;
+        }
+        .lang-btn.active {
+            background: rgba(245, 166, 35, 0.14);
+            border-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .lang-btn:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        /* ─── Zamonaviy to'lqinli yetkazib berish animatsiyasi ─── */
         .delivery-animation {
             position: relative;
             height: 70px;
@@ -90,7 +170,6 @@
             border-radius: 2px;
             overflow: visible;
         }
-        /* Harakatlanuvchi nur */
         .wave-beam {
             position: absolute;
             top: 50%;
@@ -106,39 +185,15 @@
             box-shadow: 0 0 20px rgba(245, 166, 35, 0.7), 0 0 40px rgba(245, 166, 35, 0.3);
         }
         @keyframes beamRide {
-            0% {
-                left: -60px;
-                opacity: 0;
-            }
-            15% {
-                opacity: 1;
-            }
-            45% {
-                left: calc(100% - 60px);
-                opacity: 1;
-            }
-            60% {
-                left: calc(100% - 60px);
-                opacity: 0.8;
-            }
-            70% {
-                left: calc(100% - 60px);
-                opacity: 0;
-            }
-            75% {
-                left: -60px;
-                opacity: 0;
-            }
-            90% {
-                left: -60px;
-                opacity: 0;
-            }
-            100% {
-                left: -60px;
-                opacity: 0;
-            }
+            0% { left: -60px; opacity: 0; }
+            15% { opacity: 1; }
+            45% { left: calc(100% - 60px); opacity: 1; }
+            60% { left: calc(100% - 60px); opacity: 0.8; }
+            70% { left: calc(100% - 60px); opacity: 0; }
+            75% { left: -60px; opacity: 0; }
+            90% { left: -60px; opacity: 0; }
+            100% { left: -60px; opacity: 0; }
         }
-        /* Boshlanish nuqtasi */
         .marker {
             position: absolute;
             top: 50%;
@@ -163,15 +218,9 @@
             animation: dropPulse 2.4s ease-in-out infinite;
         }
         @keyframes dropPulse {
-            0%,
-            100% {
-                box-shadow: 0 0 0 6px rgba(245, 166, 35, 0.1), 0 0 28px rgba(245, 166, 35, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 0 14px rgba(245, 166, 35, 0.03), 0 0 44px rgba(245, 166, 35, 0.7);
-            }
+            0%, 100% { box-shadow: 0 0 0 6px rgba(245, 166, 35, 0.1), 0 0 28px rgba(245, 166, 35, 0.5); }
+            50% { box-shadow: 0 0 0 14px rgba(245, 166, 35, 0.03), 0 0 44px rgba(245, 166, 35, 0.7); }
         }
-        /* Kichik zarralar */
         .particle {
             position: absolute;
             top: 50%;
@@ -184,46 +233,18 @@
             opacity: 0;
             filter: blur(0.5px);
         }
-        .particle:nth-child(1) {
-            animation-delay: 0.15s;
-        }
-        .particle:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        .particle:nth-child(3) {
-            animation-delay: 0.45s;
-        }
-        .particle:nth-child(4) {
-            animation-delay: 0.6s;
-        }
+        .particle:nth-child(1) { animation-delay: 0.15s; }
+        .particle:nth-child(2) { animation-delay: 0.3s; }
+        .particle:nth-child(3) { animation-delay: 0.45s; }
+        .particle:nth-child(4) { animation-delay: 0.6s; }
         @keyframes particleFloat {
-            0% {
-                left: 8%;
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-            20% {
-                opacity: 0.9;
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-            45% {
-                left: 92%;
-                opacity: 0.7;
-                transform: translate(-50%, -50%) scale(0.8);
-            }
-            60% {
-                left: 92%;
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.2);
-            }
-            100% {
-                left: 8%;
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
+            0% { left: 8%; opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            20% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.2); }
+            45% { left: 92%; opacity: 0.7; transform: translate(-50%, -50%) scale(0.8); }
+            60% { left: 92%; opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+            100% { left: 8%; opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
         }
 
-        /* ─── Typography ─── */
         .eyebrow {
             text-align: center;
             font-size: 10.5px;
@@ -258,7 +279,6 @@
             font-weight: 700;
         }
 
-        /* ─── Story block ─── */
         .story {
             background: var(--surface);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -297,7 +317,6 @@
             text-underline-offset: 3px;
         }
 
-        /* ─── Chips ─── */
         .chip-label {
             text-align: center;
             font-size: 11.5px;
@@ -350,7 +369,6 @@
             outline-offset: 3px;
         }
 
-        /* ─── Card panels ─── */
         .panel {
             background: var(--surface);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -489,29 +507,14 @@
             animation: popIn 0.4s var(--ease-spring);
         }
         @keyframes pop {
-            0% {
-                transform: scale(1);
-            }
-            40% {
-                transform: scale(1.18);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); }
+            40% { transform: scale(1.18); }
+            100% { transform: scale(1); }
         }
         @keyframes popIn {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.25);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.25); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .footer-tip {
@@ -527,7 +530,6 @@
             font-weight: 600;
         }
 
-        /* ─── Toast ─── */
         .toast-wrap {
             position: fixed;
             bottom: 30px;
@@ -567,66 +569,45 @@
         }
 
         @media (max-width: 360px) {
-            .card-num {
-                font-size: 18px;
-            }
-            .copy-btn {
-                width: 36px;
-                height: 36px;
-                border-radius: 10px;
-            }
-            .copy-btn svg {
-                width: 15px;
-                height: 15px;
-            }
-            .panel {
-                padding: 14px 14px 13px;
-            }
-            .chip {
-                padding: 9px 15px;
-                font-size: 12.5px;
-            }
-            h1 {
-                font-size: 23px;
-            }
-            .delivery-animation {
-                height: 56px;
-            }
+            .card-num { font-size: 18px; }
+            .copy-btn { width: 36px; height: 36px; border-radius: 10px; }
+            .copy-btn svg { width: 15px; height: 15px; }
+            .panel { padding: 14px 14px 13px; }
+            .chip { padding: 9px 15px; font-size: 12.5px; }
+            h1 { font-size: 23px; }
+            .delivery-animation { height: 56px; }
         }
         @media (min-width: 420px) {
-            .panel {
-                padding: 20px 22px 18px;
-            }
-            .card-num {
-                font-size: 24px;
-            }
+            .panel { padding: 20px 22px 18px; }
+            .card-num { font-size: 24px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .wave-beam,
-            .particle,
-            .marker.dropoff {
-                animation: none;
-            }
-            .wave-beam {
-                left: 50%;
-                opacity: 0.6;
-            }
-            * {
-                transition-duration: 0.01ms !important;
-            }
-            .copy-btn.done {
-                animation: none;
-            }
-            .copy-btn.done .icon-check {
-                animation: none;
-            }
+            .wave-beam, .particle, .marker.dropoff { animation: none; }
+            .wave-beam { left: 50%; opacity: 0.6; }
+            * { transition-duration: 0.01ms !important; }
+            .copy-btn.done { animation: none; }
+            .copy-btn.done .icon-check { animation: none; }
         }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <!-- ZAMONAVIY TO'LQINLI YETKAZIB BERISH ANIMATSIYASI -->
+
+        <div class="lang-switch" role="group" aria-label="Til / Язык">
+            <button class="lang-btn active" data-lang="uz" type="button">O‘ZBEKCHA</button>
+            <button class="lang-btn" data-lang="ru" type="button">РУССКИЙ</button>
+        </div>
+
+        <div class="goal-card">
+            <div class="goal-icon" aria-hidden="true">🎯</div>
+            <div class="goal-text">
+                <div class="goal-title" data-i18n="goal_title">Maqsadim</div>
+                <div class="goal-desc" data-i18n-html="goal_desc">O'qishimning <b>17 000 000 so'mlik</b> kontrakt to'lovini yig'ish. Shu sababli qo'shimcha ish qilaman va har bir tomoningiz men uchun juda katta yordam.</div>
+            </div>
+        </div>
+
+
         <div class="delivery-animation" aria-hidden="true">
             <div class="wave-track">
                 <div class="wave-beam"></div>
@@ -639,17 +620,17 @@
             <div class="marker dropoff"></div>
         </div>
 
-        <p class="eyebrow">Yetkazib berildi</p>
-        <h1>Bilaman siz <span class="hl">Saxiysiz!</span></h1>
-        <p class="sub-name">Kuryeringiz — <b>Rustamov Bahrombek</b></p>
+        <p class="eyebrow" data-i18n="eyebrow">Assalomu alaykum</p>
+        <h1 data-i18n-html="h1">Bilaman siz <span class="hl">Saxiysiz!</span></h1>
+        <p class="sub-name" data-i18n-html="subname">Kuryeringiz — <b>Rustamov Bahrombek</b></p>
 
         <div class="story">
-            <p>Assalomu alaykum! Men talaba bolaman, o'qishim bilan birga shu ishni qilib kun ko'raman 🎓🛵</p>
-            <p>Issiqda ham, sovuqda ham, tezroq yetkazishga harakat qilaman — chunki buyurtmangiz sovib qolmasligi, vaqtida yetib borishi men uchun muhim.</p>
-            <p>Agar xizmatimdan mamnun bo'lsangiz, <b>istalgan miqdorda</b> — hatto bitta choy puli ham — men uchun katta rag'bat bo'ladi. Majburiyat emas, faqat xohishingiz bo'lsa 🙏 aloqa uchun <a href="tel:+998200230708" class="tel">+998 20 023 07 08</a></p>
+            <p data-i18n-html="story1">Assalomu alaykum! Men talaba bolaman, o'qishim bilan birga shu ishni qilib kun ko'raman 🎓🛵</p>
+            <p data-i18n="story2">Issiqda ham, sovuqda ham, tezroq yetkazishga harakat qilaman — chunki buyurtmangiz sovib qolmasligi, vaqtida yetib borishi men uchun muhim.</p>
+            <p data-i18n-html="story3">Agar xizmatimdan mamnun bo'lsangiz, <b>istalgan miqdorda</b> — hatto bitta choy puli ham — men uchun katta rag'bat bo'ladi. Majburiyat emas, faqat xohishingiz bo'lsa 🙏 aloqa uchun <a href="tel:+998200230708" class="tel">+998 20 023 07 08</a></p>
         </div>
 
-        <p class="chip-label">Ko'pchilik mana bu atrofida qoldiradi 👇</p>
+        <p class="chip-label" data-i18n="chiplabel">Ko'pchilik mana bu atrofida qoldiradi 👇</p>
         <div class="chip-row" role="group" aria-label="Taklif qilingan summalar">
             <span class="chip" data-val="1000" tabindex="0" role="button" aria-pressed="false">1 000 so'm</span>
             <span class="chip active" data-val="3000" tabindex="0" role="button" aria-pressed="true">3 000 so'm</span>
@@ -657,7 +638,7 @@
         </div>
 
         <!-- Humo -->
-        <div class="panel" data-copy="9860600411816108" tabindex="0" role="button" aria-label="Humo karta raqamini nusxalash">
+        <div class="panel" data-copy="9860600411816108" tabindex="0" role="button" data-i18n-attr-aria="panel_humo_aria">
             <div class="panel-inner">
                 <div class="panel-left">
                     <div class="bank-label"><span class="bank-dot humo"></span>Humo</div>
@@ -677,7 +658,7 @@
         </div>
 
         <!-- Visa -->
-        <div class="panel" data-copy="4413597602430199" tabindex="0" role="button" aria-label="Visa karta raqamini nusxalash">
+        <div class="panel" data-copy="4413597602430199" tabindex="0" role="button" data-i18n-attr-aria="panel_visa_aria">
             <div class="panel-inner">
                 <div class="panel-left">
                     <div class="bank-label"><span class="bank-dot visa"></span>Visa</div>
@@ -696,7 +677,7 @@
             </div>
         </div>
 
-        <p class="footer-tip">Karta ustiga bosing — <span>avtomatik nusxalanadi</span></p>
+        <p class="footer-tip" data-i18n-html="footer">Karta ustiga bosing — <span>avtomatik nusxalanadi</span></p>
     </div>
 
     <div class="toast-wrap" aria-live="polite">
@@ -710,19 +691,94 @@
 
     <script>
         (function() {
+            const I18N = {
+                uz: {
+                    eyebrow: "Assalomu alaykum",
+                    h1: 'Bilaman siz <span class="hl">Saxiysiz!</span>',
+                    subname: 'Kuryeringiz — <b>Rustamov Bahrombek</b>',
+                    story1: "Assalomu alaykum! Men talaba bolaman, o'qishim bilan birga shu ishni qilib kun ko'raman 🎓🛵",
+                    story2: "Issiqda ham, sovuqda ham, tezroq yetkazishga harakat qilaman — chunki buyurtmangiz sovib qolmasligi, vaqtida yetib borishi men uchun muhim.",
+                    goal_title: "Maqsadim",
+                    goal_desc: 'O\'qishimning <b>17 000 000 so\'mlik</b> kontrakt to\'lovini yig\'ish. Shu sababli qo\'shimcha ish qilaman va har bir tomoningiz men uchun juda katta yordam.',
+                    story3: 'Agar xizmatimdan mamnun bo\'lsangiz, <b>istalgan miqdorda</b> — hatto bitta choy puli ham — men uchun katta rag\'bat bo\'ladi. Majburiyat emas, faqat xohishingiz bo\'lsa 🙏 aloqa uchun <a href="tel:+998200230708" class="tel">+998 20 023 07 08</a>',
+                    chiplabel: "Ko'pchilik mana bu atrofida qoldiradi 👇",
+                    footer: 'Karta ustiga bosing — <span>avtomatik nusxalanadi</span>',
+                    panel_humo_aria: "Humo karta raqamini nusxalash",
+                    panel_visa_aria: "Visa karta raqamini nusxalash",
+                    toast_copied: "✓ Karta raqami nusxalandi",
+                    toast_fail: "⚠️ Nusxalab bo'lmadi",
+                    toast_default: "Nusxalandi"
+                },
+                ru: {
+                    eyebrow: "Здравствуйте",
+                    h1: 'Знаю, вы <span class="hl">щедрый человек!</span>',
+                    subname: 'Ваш курьер — <b>Рустамов Бахромбек</b>',
+                    story1: "Здравствуйте! Я студент, совмещаю учёбу с этой работой 🎓🛵",
+                    story2: "Стараюсь доставлять быстрее и в жару, и в холод — ведь для меня важно, чтобы заказ не остыл и пришёл вовремя.",
+                    goal_title: "Моя цель",
+                    goal_desc: 'Накопить <b>17 000 000 сум</b> на оплату контракта за учёбу. Поэтому я подрабатываю курьером, и каждая ваша поддержка для меня очень важна.',
+                    story3: 'Если вы довольны обслуживанием, <b>любая сумма</b> — даже на чашку чая — станет для меня отличной поддержкой. Это необязательно, только по желанию 🙏 для связи <a href="tel:+998200230708" class="tel">+998 20 023 07 08</a>',
+                    chiplabel: "Обычно оставляют примерно столько 👇",
+                    footer: 'Нажмите на карту — <span>номер скопируется автоматически</span>',
+                    panel_humo_aria: "Скопировать номер карты Humo",
+                    panel_visa_aria: "Скопировать номер карты Visa",
+                    toast_copied: "✓ Номер карты скопирован",
+                    toast_fail: "⚠️ Не удалось скопировать",
+                    toast_default: "Скопировано"
+                }
+            };
+
+            let currentLang = 'uz';
+
+            function applyLang(lang) {
+                const dict = I18N[lang];
+                if (!dict) return;
+                currentLang = lang;
+                document.documentElement.lang = lang;
+
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (dict[key] !== undefined) el.textContent = dict[key];
+                });
+                document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-html');
+                    if (dict[key] !== undefined) el.innerHTML = dict[key];
+                });
+                document.querySelectorAll('[data-i18n-attr-aria]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-attr-aria');
+                    if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+                });
+
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+                });
+
+                try { localStorage.setItem('tip_page_lang', lang); } catch (e) {}
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+            });
+
+            let savedLang = 'uz';
+            try {
+                savedLang = localStorage.getItem('tip_page_lang') || 'uz';
+            } catch (e) {}
+            applyLang(savedLang);
+
+            // ─── Copy & toast logic ───
             const toastEl = document.getElementById('toast');
             let toastTimer = null;
             const activeCopies = new Set();
 
-            function showToast(msg = 'Nusxalandi') {
-                toastEl.querySelector('span').textContent = msg;
+            function showToast(msg) {
+                toastEl.querySelector('span').textContent = msg || I18N[currentLang].toast_default;
                 toastEl.classList.add('on');
                 if (navigator.vibrate) { try { navigator.vibrate(14); } catch (e) {} }
                 clearTimeout(toastTimer);
                 toastTimer = setTimeout(() => toastEl.classList.remove('on'), 1900);
             }
 
-            // Copy panels
             document.querySelectorAll('[data-copy]').forEach(el => {
                 el.addEventListener('click', async () => {
                     const raw = el.getAttribute('data-copy');
@@ -757,9 +813,9 @@
                                 activeCopies.delete(btn);
                             }, 2100);
                         }
-                        showToast('✓ Karta raqami nusxalandi');
+                        showToast(I18N[currentLang].toast_copied);
                     } else {
-                        showToast('⚠️ Nusxalab bo\'lmadi');
+                        showToast(I18N[currentLang].toast_fail);
                     }
                 });
                 el.addEventListener('keydown', e => {
@@ -770,7 +826,7 @@
                 });
             });
 
-            // Chips
+            // ─── Chips ───
             const chips = document.querySelectorAll('.chip');
             chips.forEach(c => {
                 c.addEventListener('click', () => {
